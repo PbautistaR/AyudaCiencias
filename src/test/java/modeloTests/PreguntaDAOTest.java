@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+package modeloTests;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,7 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import modelo.*;
-import controlador.*;
+//import controlador.*;
 
 /**
  *
@@ -53,7 +54,10 @@ public class PreguntaDAOTest {
          //rd.eliminaRespuesta(r);
          //System.out.println(u.getNombre());
          //System.out.println(p.getContenido());
-         BorrarUsuario bu=new BorrarUsuario(6);
-         bu.borrarUsuario();
+         //BorrarUsuario bu=new BorrarUsuario(6);
+         //bu.borrarUsuario();
+         UsuarioDAO ud=new UsuarioDAO();
+         Usuario u=ud.buscaUsuario(1);
+         System.out.println(u.getNombre());
      }
 }
