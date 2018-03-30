@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -21,6 +23,60 @@ public class PreguntaDAO {
     */
     public PreguntaDAO(){
         this.sessionFactory = HibernateUtil.getSessionFactory();
+    }
+    public List<Pregunta> preguntas() {
+        List<Pregunta> result = null;
+        // arbrimos la sesion son sessionFactory 
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            //iniciamos la transaccion, la consulta a realizar
+            tx = session.beginTransaction();
+            //Escribimos la consulta en HQL
+            String hql = "from Pregunta";
+            Query query = session.createQuery(hql);
+            result = (List<Pregunta>)query.list();
+            tx.commit();
+        }
+        catch (Exception e) {
+            //si hay un problema regresamos la base aun estado antes de la consulta
+            if (tx!=null){
+                tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+            //cerramos la session
+            session.close();
+        }
+        return result;
+    }
+    
+    public Pregunta buscaPregunta(int id) {
+        List<Pregunta> result = null;
+        // arbrimos la sesion son sessionFactory 
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+            //iniciamos la transaccion, la consulta a realizar
+            tx = session.beginTransaction();
+            //Escribimos la consulta en HQL
+            String hql = "from Pregunta as u where u.idpregunta = "+id;
+            Query query = session.createQuery(hql);
+            result = (List<Pregunta>)query.list();
+            tx.commit();
+        }
+        catch (Exception e) {
+            //si hay un problema regresamos la base aun estado antes de la consulta
+            if (tx!=null){
+                tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+            result.get(0).getRespuestas().size();
+            //cerramos la session
+            session.close();
+        }
+        return result.get(0);
     }
     
     public boolean nuevaPregunta(Pregunta u){
