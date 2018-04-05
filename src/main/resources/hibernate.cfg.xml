@@ -52,5 +52,8 @@ Contributor(s):
     <mapping resource="modelo/Respuesta.hbm.xml"/>
     <mapping resource="modelo/Usuario.hbm.xml"/>
     <mapping resource="modelo/Pregunta.hbm.xml"/>
+    <mapping resource="controlador/Usuario.hbm.xml"/>
+    <mapping resource="controlador/Pregunta.hbm.xml"/>
+    <mapping resource="controlador/Respuesta.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

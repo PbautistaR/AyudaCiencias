@@ -1,5 +1,5 @@
 package modelo;
-// Generated 20/03/2018 02:44:30 PM by Hibernate Tools 4.3.1
+// Generated 5/04/2018 02:03:37 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -60,10 +60,4 @@ public class Pregunta  implements java.io.Serializable {
     public void setRespuestas(Set respuestas) {
         this.respuestas = respuestas;
     }
-
-
-
-
-}
-
-
+ }

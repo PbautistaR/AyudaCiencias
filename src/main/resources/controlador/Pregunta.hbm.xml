@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 5/04/2018 02:03:40 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelo.Pregunta" table="pregunta" schema="public">
+    <class name="controlador.Pregunta" table="pregunta" schema="public" optimistic-lock="version">
         <id name="idpregunta" type="int">
             <column name="idpregunta" />
-            <generator class="assigned"></generator>
+            <generator class="assigned" />
         </id>
-        <many-to-one name="usuario" class="modelo.Usuario" fetch="select">
+        <many-to-one name="usuario" class="controlador.Usuario" fetch="select">
             <column name="idusuario" not-null="true" />
         </many-to-one>
         <property name="contenido" type="string">
@@ -18,7 +18,7 @@
             <key>
                 <column name="idpregunta" not-null="true" />
             </key>
-            <one-to-many class="modelo.Respuesta" />
+            <one-to-many class="controlador.Respuesta" />
         </set>
     </class>
 </hibernate-mapping>

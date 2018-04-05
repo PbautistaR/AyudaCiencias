@@ -3,10 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 5/04/2018 02:03:40 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="modelo.Usuario" table="usuario" schema="public">
+    <class name="controlador.Usuario" table="usuario" schema="public" optimistic-lock="version">
         <id name="idusuario" type="int">
             <column name="idusuario" />
-            <generator class="assigned"></generator>
+            <generator class="assigned" />
         </id>
         <property name="nombre" type="string">
             <column name="nombre" length="100" not-null="true" />
@@ -27,13 +27,13 @@
             <key>
                 <column name="idusuario" not-null="true" />
             </key>
-            <one-to-many class="modelo.Pregunta" />
+            <one-to-many class="controlador.Pregunta" />
         </set>
         <set name="respuestas" table="respuesta" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idusuario" not-null="true" />
             </key>
-            <one-to-many class="modelo.Respuesta" />
+            <one-to-many class="controlador.Respuesta" />
         </set>
     </class>
 </hibernate-mapping>

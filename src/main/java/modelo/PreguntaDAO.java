@@ -79,14 +79,14 @@ public class PreguntaDAO {
         return result.get(0);
     }
     
-    public boolean nuevaPregunta(Pregunta u){
+    public boolean nuevaPregunta(Pregunta Pregunta){
          // arbrimos la sesion son sessionFactory 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             //iniciamos la transaccion, la consulta a realizar
             tx = session.beginTransaction();
-            session.persist(u);
+            session.persist(Pregunta);
             
             tx.commit();
         }
@@ -104,14 +104,14 @@ public class PreguntaDAO {
     
     }
     
-    public boolean eliminaPregunta(Pregunta u){
+    public boolean eliminaPregunta(Pregunta Pregunta){
          // arbrimos la sesion son sessionFactory 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             //iniciamos la transaccion, la consulta a realizar
             tx = session.beginTransaction();
-            session.delete(u);
+            session.delete(Pregunta);
             
             tx.commit();
         }
@@ -129,14 +129,14 @@ public class PreguntaDAO {
     
     }
     
-    public boolean actualizaPregunta(Pregunta u){
+    public boolean actualizaPregunta(Pregunta Pregunta){
          // arbrimos la sesion son sessionFactory 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             //iniciamos la transaccion, la consulta a realizar
             tx = session.beginTransaction();
-            session.update(u);
+            session.update(Pregunta);
             
             tx.commit();
         }
@@ -152,5 +152,9 @@ public class PreguntaDAO {
         }
         return true;
     
+    }
+
+    public void save(Pregunta Pregunta) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
