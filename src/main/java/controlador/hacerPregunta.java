@@ -7,15 +7,13 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.util.HashSet;
 import java.util.Set;
-import modelo.Pregunta;
-import modelo.PreguntaDAO;
-import modelo.Usuario;
+import modelo.*;
 
 /**
  *
  * @author pumas
  */
-public class hacerPregunta implements java.io.Serializable{
+public class hacerPregunta {
     private int idpregunta;
     private Usuario usuario;
     private String contenido;
@@ -47,24 +45,22 @@ public class hacerPregunta implements java.io.Serializable{
     }
     
    public void setRespuestas(Set respuestas) {
-        this. respuestas = respuestas;
+        this.respuestas = respuestas;
    }
-    
+  
 public String hacerPregunta(){
     PreguntaDAO Id = new PreguntaDAO();
-    Pregunta Pregunta = new Pregunta(this.getIdpregunta(),this.getUsuario(),
-                                     this.getContenido(),this.getRespuestas());
-                                     
-    Id.save(Pregunta);
-    return  "PerfilIH?faces-redirect=true";
-     
-    /**
+    //Pregunta Pregunta = new Pregunta(this.getIdpregunta(),this.getUsuario(),
+      //                               this.getContenido(),this.getRespuestas());
+    Usuario us=new UsuarioDAO().buscarUsuario(usuario);                                
     Pregunta Pregunta = new Pregunta();
-    Pregunta.setIdpregunta(this.getIdpregunta());
-    Pregunta.setUsuario(this.getUsuario());
-    Pregunta.setContenido(this.getContenido());
-    Pregunta.setRespuestas(this.getRespuestas());
-    return"perfil";
-    */   
+    Pregunta.setIdpregunta(idpregunta);
+    Pregunta.setUsuario(us);
+    Pregunta.setContenido(contenido);
+    Pregunta.setRespuestas(respuestas);
+    
+    Id.nuevaPregunta(Pregunta);
+    return  "PerfilIH?faces-redirect=true";
+      
     }     
 }

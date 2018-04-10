@@ -79,14 +79,14 @@ public class RespuestaDAO {
         return result.get(0);
     }
     
-    public boolean nuevaRespuesta(Respuesta u){
+    public boolean nuevaRespuesta(Respuesta Respuesta){
          // arbrimos la sesion son sessionFactory 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             //iniciamos la transaccion, la consulta a realizar
             tx = session.beginTransaction();
-            session.persist(u);
+            session.persist(Respuesta);
             
             tx.commit();
         }
@@ -104,14 +104,14 @@ public class RespuestaDAO {
     
     }
     
-    public boolean eliminaRespuesta(Respuesta u){
+    public boolean eliminaRespuesta(Respuesta Respuesta){
          // arbrimos la sesion son sessionFactory 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             //iniciamos la transaccion, la consulta a realizar
             tx = session.beginTransaction();
-            session.delete(u);
+            session.delete(Respuesta);
             
             tx.commit();
         }
@@ -129,14 +129,14 @@ public class RespuestaDAO {
     
     }
     
-    public boolean actualizaRespuesta(Respuesta u){
+    public boolean actualizaRespuesta(Respuesta Respuesta){
          // arbrimos la sesion son sessionFactory 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         try {
             //iniciamos la transaccion, la consulta a realizar
             tx = session.beginTransaction();
-            session.update(u);
+            session.update(Respuesta);
             
             tx.commit();
         }

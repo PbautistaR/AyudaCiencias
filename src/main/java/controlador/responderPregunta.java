@@ -7,16 +7,13 @@ package controlador;
 
 import java.io.Serializable;
 import javax.persistence.Id;
-import modelo.Pregunta;
-import modelo.Respuesta;
-import modelo.RespuestaDAO;
-import modelo.Usuario;
+import modelo.*;
 
 /**
  *
  * @author pumas
  */
-public class responderPregunta implements Serializable {
+public class responderPregunta {
      private int idrespuesta;
      private Pregunta pregunta;
      private Usuario usuario;
@@ -49,21 +46,31 @@ public class responderPregunta implements Serializable {
     }
     
     public void setContenido(String contenido) {
+    
         this.contenido = contenido;
     }
-    
-     //public void listener(ActionEvent event){
-       // pregunta = (Pregunta)event.getComponent().getAttributes().get("Pregunta1");
-    //}
-    public String responderPregunta() {
-         RespuestaDAO ld = new RespuestaDAO();
-         Respuesta respuesta = new Respuesta(this.getIdrespuesta(),this.getPregunta(),
-                                            this.getUsuario(),this.getContenido());
-                                     
-            respuesta.setContenido(this.getContenido());
-        //Id.save(Respuesta);
-    return  "InicioIH?faces-redirect=true";
+   
+    public String responderPregunta(Pregunta pregunta){
+        this.setPregunta(pregunta);    
+        Usuario us=new UsuarioDAO().buscarUsuario(usuario);
+        //Respuesta resp = new Respuesta(this.getIdrespuesta(),this.getPregunta(),
+        //                               this.getUsuario(),this.getContenido());
+        Respuesta resp = new Respuesta();
+        resp.setIdrespuesta(idrespuesta);
+        resp.setUsuario(usuario);
+        resp.setContenido(contenido);
+        RespuestaDAO respDAO = new RespuestaDAO();
+        respDAO.nuevaRespuesta(resp);   
+        contenido="";
+      return  "InicioIH?faces-redirect=true";
+    }
+/*
+ public void foo(Pregunta pregunta){
+        this.setPregunta(pregunta);
+        RespuestaDAO respDAO=new RespuestaDAO();
+        for(int i=2;i<5;i++){
+            Respuesta resp=new Respuesta(i, pregunta, usuario, "Resp num."+i);            
+            respDAO.nuevaRespuesta(resp);
         }
-    
-     
+   }**/     
 }
